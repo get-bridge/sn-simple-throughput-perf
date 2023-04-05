@@ -92,7 +92,7 @@ suspend fun measureReceivingRate(
                         logger.info("--- Warm-up period has passed. ---")
                     }
 
-                    if (iteration >= warmUpSeconds && (expectedRate == 0 || messagesPerSecond > expectedRate * 0.7)) {
+                    if (iteration >= warmUpSeconds && (expectedRate == 0 || messagesPerSecond > expectedRate * 0.5)) {
                         sourceTransitSpan.reportValue(averageSourceTransit)
                         sinkTransitSpan.reportValue(averageSinkTransit)
                         endToEndProcessingSpan.reportValue(averageEndToEndProcessing)
