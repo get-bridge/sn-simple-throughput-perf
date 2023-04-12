@@ -6,5 +6,5 @@ inputs:
   - "persistent://public/default/debezium.public.users"
 output: "persistent://public/default/debezium.public.users-public"
 jar: "transform-function-v1.jar"
-parallelism: 2
+parallelism: 1
 retainOrdering: true
