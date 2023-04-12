@@ -11,7 +11,6 @@ kotlin {
 
 shadowJar {
     mergeServiceFiles()
-    relocate 'kotlin', 'shadow.kotlin'
 }
 
 dependencies {

@@ -1,13 +1,10 @@
 tenant: public
 namespace: default
-name: user-transform-new-2
-className: com.bridge.data.TransformUserMessage
+name: user-transform-new-13
+className: com.bridge.data.TransformStringMessage
 inputs:
   - "persistent://public/default/debezium.public.users"
-customSerdeInputs:
-  "persistent://public/default/debezium.public.users": com.bridge.data.UserMessageSerDe
 output: "persistent://public/default/debezium.public.users-public"
-outputSerdeClassName: com.bridge.data.PublicUserSerDe
 jar: "transform-function-v1.jar"
-parallelism: 1
+parallelism: 2
 retainOrdering: true
