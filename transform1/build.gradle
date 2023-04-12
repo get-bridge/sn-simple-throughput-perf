@@ -1,0 +1,42 @@
+plugins {
+    id "kotlin"
+    id "application"
+    id "com.github.johnrengelman.shadow"  version "8.1.0"
+}
+
+group = ""
+version = "v1"
+
+application {
+    mainClass = 'MainKt'
+}
+
+repositories {
+    mavenCentral()
+}
+
+shadowJar {
+    mergeServiceFiles()
+    dependencies {
+        exclude(dependency("org.apache.flink:force-shading"))
+    }
+}
+
+configurations.configureEach {
+    resolutionStrategy.dependencySubstitution {
+        substitute module("org.apache.pulsar:pulsar-client-all") using module("org.apache.pulsar:pulsar-client-original:2.10.1") because "We want the unshaded version"
+    }
+}
+
+dependencies {
+    api "com.google.code.gson:gson:2.10.1"
+
+    api 'org.apache.flink:flink-clients:1.16.1'
+    api 'org.apache.flink:flink-streaming-java:1.16.1'
+    api 'org.apache.flink:flink-connector-pulsar:1.16.1'
+    api 'org.apache.flink:flink-runtime-web:1.16.1'
+
+    api "org.apache.pulsar:pulsar-common:2.10.1"
+    api "org.apache.pulsar:pulsar-client-original:2.10.1"
+    api "org.apache.pulsar:pulsar-client-admin-original:2.10.1"
+}

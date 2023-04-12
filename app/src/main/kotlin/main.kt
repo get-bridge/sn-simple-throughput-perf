@@ -34,7 +34,13 @@ fun main(args: Array<String>) {
             val start = System.currentTimeMillis()
 
             (0..numberOfMessagesInBatch)
-                .map { producer.sendAsync("MESSAGE $it").asDeferred() }
+                .map {
+                    producer.sendAsync("MESSAGE $it")
+                        .thenApply { sent ->
+                            println("SENT: $sent")
+                            sent
+                        }
+                        .asDeferred() }
                 .awaitAll()
 
             val end = System.currentTimeMillis()

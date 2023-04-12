@@ -1,0 +1,27 @@
+plugins {
+    id "kotlin"
+    id "application"
+    id "com.github.johnrengelman.shadow"  version "8.1.0"
+}
+
+group = ""
+version = "v1"
+
+application {
+    mainClass = 'MainKt'
+}
+
+repositories {
+    mavenCentral()
+}
+
+shadowJar {
+    archiveBaseName.set('my-spark-app')
+    archiveClassifier.set('')
+    archiveVersion.set('')
+}
+
+dependencies {
+    implementation "com.sparkjava:spark-core:2.9.4"
+    implementation "org.jetbrains.kotlinx.spark:kotlin-spark-api_3.3.1_2.13:1.2.3"
+}

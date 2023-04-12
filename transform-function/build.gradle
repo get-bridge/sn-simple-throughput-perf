@@ -1,0 +1,23 @@
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.8.0"
+    id "com.github.johnrengelman.shadow" version "8.1.0"
+}
+
+version = "v1"
+
+kotlin {
+    jvmToolchain(11)
+}
+
+shadowJar {
+    mergeServiceFiles()
+    relocate 'kotlin', 'shadow.kotlin'
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.8.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.8.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.0-rc2'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.15.0-rc2'
+    implementation 'org.apache.pulsar:pulsar-functions-api:2.11.0'
+}
